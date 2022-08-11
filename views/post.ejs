@@ -32,6 +32,14 @@
 
   <hr>
 
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" style="margin: 10px;" href="/post/edit/<%= post._id %>">Update Post</a>
+  </div>
+  <div class="clearfix">
+    <a href="/post/<%= post._id %>?_method=DELETE" class="btn btn-primary float-right" style="margin: 10px; background-color: #dd0000; border-color: #dd0000;"
+      onclick="return confirm('Are you sure?')">Delete Post</a>
+  </div>
+
   <%- include('partials/_footer') -%>
 
 </body>
