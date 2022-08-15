@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
@@ -5,10 +6,11 @@ const ejs = require('ejs');
 const postController = require('./controllers/postController');
 const pageController = require('./controllers/pageController');
 
+
 const app = express();
 
 //connect DB
-mongoose.connect('mongodb://localhost/cleanblog-test-db', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
