@@ -10,7 +10,7 @@ const pageController = require('./controllers/pageController');
 const app = express();
 
 //connect DB
-mongoose.connect('mongodb://localhost/clean-blog', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
