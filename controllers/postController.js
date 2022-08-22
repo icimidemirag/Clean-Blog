@@ -1,9 +1,21 @@
 const Post = require('../models/Post');
 
 exports.getAllPosts = async (req, res) => {
-  const posts = await Post.find({}).sort('-dateCreated');
+  const page = req.query.page || 1; 
+  const older = Number(Number(page) + 1) ;                       // Başlangıç sayfamız veya ilk sayfamız.
+  const postsPerPage = 3;                                 // Her sayfada bulunan fotoğraf sayısı
+  const totalPosts = await Post.find().countDocuments(); // Toplam fotoğraf sayısı
+
+  const posts = await Post.find({})                      // Fotoğrafları alıyoruz  
+  .sort('-dateCreated')                                    // Fotoğrafları sıralıyoruz
+  .skip((page-1) * postsPerPage)                          // Her sayfanın kendi fotoğrafları
+  .limit(postsPerPage)                                    // Her sayfada olmasını istediğimi F. sayısını sınırlıyoruz.
+  
   res.render('index', {
-    posts,
+    posts: posts,
+    current: page,
+    older: older,
+    pages: Math.ceil(totalPosts / postsPerPage),
   });
 };
 
