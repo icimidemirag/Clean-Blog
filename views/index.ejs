@@ -5,7 +5,7 @@
   <%- include('partials/_navigation') -%>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -45,7 +45,7 @@
           <% if (current < pages) { %>
           <!-- Pager -->
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="/?page=<%= older %>">Older Posts &rarr;</a>
+            <a class="btn btn-primary float-right" href="/?page=<%= Number(current) + 1 %>">Older Posts &rarr;</a>
           </div>
           <% } %>
         <% } %>

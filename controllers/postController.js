@@ -1,8 +1,7 @@
 const Post = require('../models/Post');
 
 exports.getAllPosts = async (req, res) => {
-  const page = req.query.page || 1; 
-  const older = Number(Number(page) + 1) ;                       // Başlangıç sayfamız veya ilk sayfamız.
+  const page = req.query.page || 1;                      // Başlangıç sayfamız veya ilk sayfamız.
   const postsPerPage = 3;                                 // Her sayfada bulunan fotoğraf sayısı
   const totalPosts = await Post.find().countDocuments(); // Toplam fotoğraf sayısı
 
@@ -14,7 +13,6 @@ exports.getAllPosts = async (req, res) => {
   res.render('index', {
     posts: posts,
     current: page,
-    older: older,
     pages: Math.ceil(totalPosts / postsPerPage),
   });
 };
